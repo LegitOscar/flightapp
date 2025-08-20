@@ -43,6 +43,11 @@ class FlightReaderTest {
             List<FlightDTO> flights = reader.getFlightsFromFile("flights.json");
             List<FlightInfoDTO> flightInfoList = reader.getFlightInfoDetails(flights);
             assertEquals("Royal Jordanian", flightInfoList.get(0).getAirline());
+            assertAll(
+            () -> assertEquals("King Hussein International", flightInfoList.get(0).getOrigin())
+            );
+
+            //Testing more than just the getAirline method is a good idea
 
         } catch (IOException e) {
             throw new RuntimeException(e);

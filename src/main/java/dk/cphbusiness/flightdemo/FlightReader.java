@@ -3,7 +3,9 @@ package dk.cphbusiness.flightdemo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dk.cphbusiness.flightdemo.dtos.FlightDTO;
 import dk.cphbusiness.flightdemo.dtos.FlightInfoDTO;
+import dk.cphbusiness.flightdemo.dtos.FlightServices;
 import dk.cphbusiness.utils.Utils;
+
 
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -19,10 +21,27 @@ import java.util.*;
 public class FlightReader {
 
     public static void main(String[] args) {
+
+
+
         try {
             List<FlightDTO> flightList = getFlightsFromFile("flights.json");
             List<FlightInfoDTO> flightInfoDTOList = getFlightInfoDetails(flightList);
+
+
             flightInfoDTOList.forEach(System.out::println);
+
+
+            Duration totalRoyal = FlightServices.getTotalFlightTimeForAirline(flightInfoDTOList, "Aeroflot");
+            System.out.println("Total flight time for Royal Jordanian " + totalRoyal.toHours() + "Hours");
+
+//            Duration totalRoyal = flightInfoDTOList.stream()
+//                    .filter(f -> "Royal Jordanian".equalsIgnoreCase(f.getAirline()))
+//                    .map(FlightInfoDTO::getDuration)
+//                    .reduce(Duration.ZERO, Duration::plus);
+//
+//            System.out.println("Total flight time for Royal Jordanian " + totalRoyal.toHours() + "Hours");
+
         } catch (IOException e) {
             e.printStackTrace();
         }
