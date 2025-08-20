@@ -35,6 +35,11 @@ public class FlightReader {
             Duration totalRoyal = FlightServices.getTotalFlightTimeForAirline(flightInfoDTOList, "Aeroflot");
             System.out.println("Total flight time for Royal Jordanian " + totalRoyal.toHours() + "Hours");
 
+            List<FlightInfoDTO> airportbetween = FlightServices.getFlightsBetweenAirports(flightInfoDTOList, "Queen Alia International","King Hussein International");
+            System.out.println("\nFlights between Heathrow and Pulkovo " + airportbetween.size());
+            airportbetween.forEach(System.out::println);
+
+
 //            Duration totalRoyal = flightInfoDTOList.stream()
 //                    .filter(f -> "Royal Jordanian".equalsIgnoreCase(f.getAirline()))
 //                    .map(FlightInfoDTO::getDuration)

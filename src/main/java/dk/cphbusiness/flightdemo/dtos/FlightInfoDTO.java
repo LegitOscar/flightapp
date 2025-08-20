@@ -21,4 +21,6 @@ public class FlightInfoDTO {
     private LocalDateTime arrival;
     private String origin;
     private String destination;
+
+
 }
